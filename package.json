@@ -1,0 +1,24 @@
+{
+  "name": "@dera-/akashic-choice",
+  "version": "1.0.0",
+  "description": "akashic製マルチプレイゲームで利用できる選択肢提示・決定用ライブラリ",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "npm run clean && npm run build",
+    "clean": "shx rm -rf ./lib",
+    "build": "tsc -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "shx": "^0.3.2",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@akashic/akashic-engine": "~2.5.4"
+  }
+}
