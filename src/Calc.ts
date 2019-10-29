@@ -18,6 +18,35 @@ export interface ValueChoiceStatus {
     max?: number;
 }
 
+export function initializeChoices(names: string[]): void {
+    g.game.vars.choices = names.map(n => {
+        return {
+            name: n,
+            ids: []
+        };
+    });
+}
+
+export function decideOne(index: number): void {
+    g.game.vars.choices = (g.game.vars.choices as any[]).map(c => {
+        return {
+            name: c.name,
+            ids: (c.ids as string[]).filter(id => id !== g.game.selfId)
+        };
+    });
+    g.game.vars.choices[index].push(g.game.selfId);
+}
+
+export function getChoices(decision: DecisionForChoice): ChoicesStatus {
+    const choices = (g.game.vars.choices as any[]).map(c => {
+        return {
+            name: c.name,
+            supporter: c.ids.length
+        };
+    });
+    return {choices, decision};
+}
+
 export function decideForChoices(status: ChoicesStatus): ChoiceStatus|null {
     const count = status.choices.length;
     if (count === 0) {
